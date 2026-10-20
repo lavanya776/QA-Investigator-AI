@@ -1,0 +1,6 @@
+node_modules/
+dist/
+runs/
+.qa-secrets.json
+*.log
+.claude/settings.local.json

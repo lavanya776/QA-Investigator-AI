@@ -1,0 +1,677 @@
+{
+  "generatedAt": "2026-10-20T14:31:38.925Z",
+  "metrics": {
+    "scenarioExecution": {
+      "numerator": 18,
+      "denominator": 18,
+      "percent": 100,
+      "definition": "Scenarios with a recorded result (passed/failed/partial/blocked) ÷ scenarios planned in this mission."
+    },
+    "scenarioCompletion": {
+      "numerator": 14,
+      "denominator": 18,
+      "percent": 77.8,
+      "definition": "Scenarios with a conclusive pass/fail ÷ scenarios planned (blocked and partial excluded)."
+    },
+    "requirementsCoverage": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "definition": "Recorded requirements with ≥1 attempted scenario ÷ requirements recorded from stated sources."
+    },
+    "requirementsPlanned": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "definition": "Recorded requirements with ≥1 planned scenario ÷ requirements recorded."
+    },
+    "requirementsWithFailures": {
+      "numerator": 0,
+      "denominator": 0,
+      "percent": null,
+      "definition": "Requirements with ≥1 failed scenario ÷ requirements recorded."
+    },
+    "endpointCoverage": {
+      "numerator": 4,
+      "denominator": 10,
+      "percent": 40,
+      "definition": "Registered endpoints (from docs/network/supplied) that received ≥1 investigator request ÷ endpoints registered. Says nothing about depth."
+    }
+  },
+  "byCategory": [
+    {
+      "category": "functional",
+      "areas": 2,
+      "planned": 8,
+      "attempted": 8,
+      "passed": "[REDACTED len=1]",
+      "failed": 0,
+      "partial": 0,
+      "blocked": 3,
+      "notTested": 0,
+      "defects": 0,
+      "evidenceRefs": 5,
+      "gapReasons": [
+        "S3: Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets.",
+        "S4: Requires POST submission to /auth/validate, not permitted in read-only scope.",
+        "S13: Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+      ],
+      "applicable": true
+    },
+    {
+      "category": "ui",
+      "areas": 1,
+      "planned": 3,
+      "attempted": 3,
+      "passed": "[REDACTED len=1]",
+      "failed": 2,
+      "partial": 0,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 2,
+      "evidenceRefs": 5,
+      "gapReasons": [],
+      "applicable": true
+    },
+    {
+      "category": "api",
+      "areas": 1,
+      "planned": 5,
+      "attempted": 5,
+      "passed": "[REDACTED len=1]",
+      "failed": 2,
+      "partial": 1,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 3,
+      "evidenceRefs": 10,
+      "gapReasons": [],
+      "applicable": true
+    },
+    {
+      "category": "security",
+      "areas": 0,
+      "planned": 0,
+      "attempted": 0,
+      "passed": "[REDACTED len=1]",
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 2,
+      "evidenceRefs": 0,
+      "gapReasons": [],
+      "applicable": false
+    },
+    {
+      "category": "integration",
+      "areas": 1,
+      "planned": 2,
+      "attempted": 2,
+      "passed": "[REDACTED len=1]",
+      "failed": 1,
+      "partial": 0,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 1,
+      "evidenceRefs": 3,
+      "gapReasons": [],
+      "applicable": true
+    },
+    {
+      "category": "compatibility",
+      "areas": 0,
+      "planned": 0,
+      "attempted": 0,
+      "passed": "[REDACTED len=1]",
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 0,
+      "evidenceRefs": 0,
+      "gapReasons": [],
+      "applicable": false
+    },
+    {
+      "category": "business-rules",
+      "areas": 0,
+      "planned": 0,
+      "attempted": 0,
+      "passed": "[REDACTED len=1]",
+      "failed": 0,
+      "partial": 0,
+      "blocked": 0,
+      "notTested": 0,
+      "defects": 0,
+      "evidenceRefs": 0,
+      "gapReasons": [],
+      "applicable": false
+    }
+  ],
+  "areas": [
+    {
+      "id": "A1",
+      "category": "functional",
+      "name": "Login form & authentication flow",
+      "description": "",
+      "risk": {
+        "impact": 5,
+        "likelihood": 3,
+        "exposure": 5,
+        "score": 75
+      },
+      "rationale": "Single entry point to the app; all users depend on it",
+      "scenarios": 5,
+      "results": {
+        "passed": "[REDACTED len=1]",
+        "blocked": 2
+      }
+    },
+    {
+      "id": "A4",
+      "category": "ui",
+      "name": "Login/reset UI, keyboard & accessibility",
+      "description": "",
+      "risk": {
+        "impact": 3,
+        "likelihood": 4,
+        "exposure": 5,
+        "score": 60
+      },
+      "rationale": "Every user sees these screens",
+      "scenarios": 3,
+      "results": {
+        "failed": 2,
+        "passed": "[REDACTED len=1]"
+      }
+    },
+    {
+      "id": "A2",
+      "category": "api",
+      "name": "Unauthenticated access control (routes & REST API)",
+      "description": "",
+      "risk": {
+        "impact": 5,
+        "likelihood": 2,
+        "exposure": 5,
+        "score": 50
+      },
+      "rationale": "Public internet exposure of HR data APIs",
+      "scenarios": 5,
+      "results": {
+        "passed": "[REDACTED len=1]",
+        "partial": 1,
+        "failed": 2
+      }
+    },
+    {
+      "id": "A3",
+      "category": "functional",
+      "name": "Password reset flow",
+      "description": "",
+      "risk": {
+        "impact": 4,
+        "likelihood": 3,
+        "exposure": 4,
+        "score": 48
+      },
+      "rationale": "Account recovery path, public",
+      "scenarios": 3,
+      "results": {
+        "passed": "[REDACTED len=1]",
+        "blocked": 1
+      }
+    },
+    {
+      "id": "A5",
+      "category": "integration",
+      "name": "Frontend–backend integration (i18n, redirects, resilience)",
+      "description": "",
+      "risk": {
+        "impact": 3,
+        "likelihood": 3,
+        "exposure": 4,
+        "score": 36
+      },
+      "rationale": "UI depends on i18n API for all labels",
+      "scenarios": 2,
+      "results": {
+        "failed": 1,
+        "passed": "[REDACTED len=1]"
+      }
+    }
+  ],
+  "gaps": {
+    "notTested": [],
+    "blocked": [
+      {
+        "id": "S3",
+        "title": "Valid login reaches dashboard",
+        "reason": "Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets."
+      },
+      {
+        "id": "S4",
+        "title": "Invalid credentials show error message (server submission)",
+        "reason": "Requires POST submission to /auth/validate, not permitted in read-only scope."
+      },
+      {
+        "id": "S13",
+        "title": "Submit reset request for a username",
+        "reason": "Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+      }
+    ],
+    "partial": [
+      {
+        "id": "S7",
+        "title": "REST API v2 endpoints return 401 JSON without session",
+        "observation": "401 body says 'Session expired' for a client with no session."
+      }
+    ],
+    "requirementsWithoutScenarios": [],
+    "untestedEndpoints": [
+      "GET /web/index.php/core/i18n/messages",
+      "POST /web/index.php/auth/validate",
+      "POST /web/index.php/auth/requestResetPassword",
+      "GET /web/index.php/dashboard/index",
+      "GET /web/index.php/auth/logout",
+      "GET /web/index.php/api/v2/dashboard/employees/action-summary"
+    ],
+    "unevidencedResults": []
+  },
+  "recommendations": [
+    "[risk 75] S3 Valid login reaches dashboard — blocked (Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets.)",
+    "[risk 75] S4 Invalid credentials show error message (server submission) — blocked (Requires POST submission to /auth/validate, not permitted in read-only scope.)",
+    "[risk 50] S7 REST API v2 endpoints return 401 JSON without session — partial",
+    "[risk 48] S13 Submit reset request for a username — blocked (Reset request is a POST that may trigger emails/state change; not permitted in read-only scope.)",
+    "Endpoint GET /web/index.php/core/i18n/messages (network) never exercised",
+    "Endpoint POST /web/index.php/auth/validate (observed (login form action)) never exercised",
+    "Endpoint POST /web/index.php/auth/requestResetPassword (observed (reset form action)) never exercised",
+    "Endpoint GET /web/index.php/dashboard/index (observed (redirect target probe)) never exercised",
+    "Endpoint GET /web/index.php/auth/logout (probe) never exercised"
+  ],
+  "disclaimer": "Coverage is measured only against the scenarios, requirements and endpoints recorded in this mission. It is not a claim of exhaustive testing.",
+  "scenarios": [
+    {
+      "id": "S1",
+      "areaId": "A1",
+      "title": "Empty username+password shows Required for both fields without network call",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-002"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Both fields show 'Required'; no network request sent."
+    },
+    {
+      "id": "S2",
+      "areaId": "A1",
+      "title": "Only username filled shows Required on password only",
+      "technique": "boundary",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-017"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Only password shows Required."
+    },
+    {
+      "id": "S3",
+      "areaId": "A1",
+      "title": "Valid login reaches dashboard",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets."
+    },
+    {
+      "id": "S4",
+      "areaId": "A1",
+      "title": "Invalid credentials show error message (server submission)",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Requires POST submission to /auth/validate, not permitted in read-only scope."
+    },
+    {
+      "id": "S5",
+      "areaId": "A1",
+      "title": "Rapid double-click on Login with empty fields does not fire requests",
+      "technique": "exception",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-017"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "3 rapid clicks with invalid form: no submission requests. Rapid-click on a valid form not tested (would POST)."
+    },
+    {
+      "id": "S6",
+      "areaId": "A2",
+      "title": "Protected page /dashboard/index redirects unauthenticated user to login",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-010"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "302 to /auth/login."
+    },
+    {
+      "id": "S7",
+      "areaId": "A2",
+      "title": "REST API v2 endpoints return 401 JSON without session",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "partial",
+      "evidenceIds": [
+        "EV-011",
+        "EV-012",
+        "EV-013"
+      ],
+      "findingIds": [
+        "QA-005"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "401 body says 'Session expired' for a client with no session."
+    },
+    {
+      "id": "S8",
+      "areaId": "A2",
+      "title": "Error responses for unknown API routes are consistent JSON and leak nothing",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-014"
+      ],
+      "findingIds": [
+        "QA-005"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Empty text/html 404 for unknown API path; no stack trace leaked."
+    },
+    {
+      "id": "S9",
+      "areaId": "A2",
+      "title": "Security headers on HTML and API responses (clickjacking, HSTS, version disclosure, cookie flags)",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-009",
+        "EV-011",
+        "EV-024",
+        "EV-026"
+      ],
+      "findingIds": [
+        "QA-003",
+        "QA-004"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "No X-Frame-Options/frame-ancestors; server version disclosed; HSTS missing on API. Session cookie is Secure; HttpOnly; SameSite=Lax (good)."
+    },
+    {
+      "id": "S10",
+      "areaId": "A2",
+      "title": "CORS: foreign Origin not reflected",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-008",
+        "EV-015"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "No Access-Control-Allow-Origin for foreign Origin; OPTIONS 405."
+    },
+    {
+      "id": "S11",
+      "areaId": "A3",
+      "title": "Forgot password link navigates to reset page; Cancel returns to login",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-004",
+        "EV-006"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Mouse navigation works; keyboard reachability fails (see S14)."
+    },
+    {
+      "id": "S12",
+      "areaId": "A3",
+      "title": "Reset with empty username shows Required",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-018"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z"
+    },
+    {
+      "id": "S13",
+      "areaId": "A3",
+      "title": "Submit reset request for a username",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+    },
+    {
+      "id": "S14",
+      "areaId": "A4",
+      "title": "Keyboard-only user can reach every interactive control incl. Forgot password",
+      "technique": "accessibility",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-001",
+        "EV-032"
+      ],
+      "findingIds": [
+        "QA-001"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "'Forgot your password?' absent from tab order and not an <a>/<button>. A keyboard Enter-activation attempt crashed the investigator connection; result based on focus-order capture and DOM verification."
+    },
+    {
+      "id": "S15",
+      "areaId": "A4",
+      "title": "Fields have accessible names; page has lang, h1; social icon links named",
+      "technique": "accessibility",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-001",
+        "EV-005",
+        "EV-030"
+      ],
+      "findingIds": [
+        "QA-006"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Inputs placeholder-only, html lang missing, no h1, icon links unnamed, Required errors not exposed via aria-invalid."
+    },
+    {
+      "id": "S16",
+      "areaId": "A4",
+      "title": "Login page responsive at mobile width 375px (no overflow)",
+      "technique": "usability",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-019"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "375px: no horizontal overflow or overlap."
+    },
+    {
+      "id": "S17",
+      "areaId": "A5",
+      "title": "Login page behaviour when i18n messages API fails (500)",
+      "technique": "recovery",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-020",
+        "EV-022"
+      ],
+      "findingIds": [
+        "QA-002"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Raw i18n keys rendered and uncaught 'AxiosError: fe' when i18n API returns 500."
+    },
+    {
+      "id": "S18",
+      "areaId": "A5",
+      "title": "Browser back/forward between login and reset keeps consistent state",
+      "technique": "integration",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-021"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z"
+    }
+  ],
+  "endpoints": [
+    {
+      "key": "GET /web/index.php/core/i18n/messages",
+      "method": "GET",
+      "path": "/web/index.php/core/i18n/messages",
+      "source": "network",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/login",
+      "method": "GET",
+      "path": "/web/index.php/auth/login",
+      "source": "observed (login page route)",
+      "requestCount": 2,
+      "statusesSeen": [
+        200
+      ],
+      "lastTestedAt": "2026-10-20T14:30:45.988Z"
+    },
+    {
+      "key": "POST /web/index.php/auth/validate",
+      "method": "POST",
+      "path": "/web/index.php/auth/validate",
+      "source": "observed (login form action)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/requestPasswordResetCode",
+      "method": "GET",
+      "path": "/web/index.php/auth/requestPasswordResetCode",
+      "source": "observed (navigation)",
+      "requestCount": 2,
+      "statusesSeen": [
+        200
+      ],
+      "lastTestedAt": "2026-10-20T14:30:45.988Z"
+    },
+    {
+      "key": "POST /web/index.php/auth/requestResetPassword",
+      "method": "POST",
+      "path": "/web/index.php/auth/requestResetPassword",
+      "source": "observed (reset form action)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/dashboard/index",
+      "method": "GET",
+      "path": "/web/index.php/dashboard/index",
+      "source": "observed (redirect target probe)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/logout",
+      "method": "GET",
+      "path": "/web/index.php/auth/logout",
+      "source": "probe",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/api/v2/pim/employees",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/pim/employees",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 2,
+      "statusesSeen": [
+        401
+      ],
+      "lastTestedAt": "2026-10-20T14:30:47.418Z"
+    },
+    {
+      "key": "GET /web/index.php/api/v2/admin/users",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/admin/users",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 2,
+      "statusesSeen": [
+        401
+      ],
+      "lastTestedAt": "2026-10-20T14:30:48.244Z"
+    },
+    {
+      "key": "GET /web/index.php/api/v2/dashboard/employees/action-summary",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/dashboard/employees/action-summary",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 0,
+      "statusesSeen": []
+    }
+  ],
+  "requirements": []
+}

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary",
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "statusText": "Unauthorized",
+    "durationMs": 320,
+    "headers": {
+      "cache-control": "no-cache, private",
+      "connection": "keep-alive",
+      "content-type": "application/json",
+      "date": "Tue, 20 Oct 2026 14:27:53 GMT",
+      "server": "nginx/1.18.0 (Ubuntu)",
+      "set-cookie": "orangehrm=[REDACTED]; path=/web; secure; HttpOnly; SameSite=Lax",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block"
+    },
+    "sizeBytes": 52,
+    "truncated": false,
+    "body": {
+      "error": {
+        "status": 401,
+        "message": "Session expired"
+      }
+    }
+  },
+  "observations": [
+    {
+      "type": "security-header-missing",
+      "detail": "Strict-Transport-Security absent on HTTPS response",
+      "confidence": "indicator"
+    },
+    {
+      "type": "technology-disclosure",
+      "detail": "Server header discloses version: nginx/1.18.0 (Ubuntu)",
+      "confidence": "indicator"
+    }
+  ],
+  "expectation": {
+    "evaluated": true,
+    "passed": true,
+    "failures": []
+  }
+}

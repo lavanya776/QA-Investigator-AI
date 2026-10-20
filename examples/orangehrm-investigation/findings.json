@@ -1,0 +1,1442 @@
+{
+  "generatedAt": "2026-10-20T14:31:38.925Z",
+  "tool": "qa-investigator-ai",
+  "mission": {
+    "id": "ui-opensource-demo-orangehrmlive-com-20261020-142705",
+    "name": "UI opensource-demo.orangehrmlive.com",
+    "objective": "Inspect the login page, form validation, navigation, visible UI behavior, and publicly accessible API behavior. Do not attempt login bypass or modify data.",
+    "environment": "staging",
+    "targetUrls": [
+      "https://opensource-demo.orangehrmlive.com/"
+    ],
+    "allowedHosts": [
+      "opensource-demo.orangehrmlive.com"
+    ],
+    "authorization": {
+      "statement": "I authorize testing of the official OrangeHRM public demo within the configured scope.",
+      "authorizedBy": "Self-authorized — public demo testing limited to permitted, non-invasive checks."
+    },
+    "allowStateChanging": false,
+    "allowedMethods": [
+      "GET",
+      "HEAD",
+      "OPTIONS"
+    ],
+    "outOfScope": [],
+    "limits": {
+      "maxRequests": 400,
+      "minIntervalMs": 50,
+      "timeoutMs": 10000,
+      "maxResponseBytes": 1000000,
+      "maxBrowserActions": 1500
+    },
+    "authProfiles": {},
+    "createdAt": "2026-10-20T14:27:05.389Z",
+    "runDir": "C:\\Users\\Admin\\Documents\\Lavanya\\exploratiry-agent\\runs\\ui-opensource-demo-orangehrmlive-com-20261020-142705"
+  },
+  "summary": {
+    "findings": {
+      "bySeverity": {
+        "critical": 0,
+        "high": 0,
+        "medium": 3,
+        "low": 3,
+        "info": 0
+      },
+      "byStatus": {
+        "Confirmed": 6,
+        "Potential": 0,
+        "Not Reproduced": 0,
+        "Blocked": 0
+      }
+    },
+    "coverage": {
+      "scenarioExecution": {
+        "numerator": 18,
+        "denominator": 18,
+        "percent": 100,
+        "definition": "Scenarios with a recorded result (passed/failed/partial/blocked) ÷ scenarios planned in this mission."
+      },
+      "scenarioCompletion": {
+        "numerator": 14,
+        "denominator": 18,
+        "percent": 77.8,
+        "definition": "Scenarios with a conclusive pass/fail ÷ scenarios planned (blocked and partial excluded)."
+      },
+      "requirementsCoverage": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Recorded requirements with ≥1 attempted scenario ÷ requirements recorded from stated sources."
+      },
+      "requirementsPlanned": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Recorded requirements with ≥1 planned scenario ÷ requirements recorded."
+      },
+      "requirementsWithFailures": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Requirements with ≥1 failed scenario ÷ requirements recorded."
+      },
+      "endpointCoverage": {
+        "numerator": 4,
+        "denominator": 10,
+        "percent": 40,
+        "definition": "Registered endpoints (from docs/network/supplied) that received ≥1 investigator request ÷ endpoints registered. Says nothing about depth."
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "QA-001",
+      "title": "\"Forgot your password?\" control is not keyboard-focusable on the login page",
+      "category": "accessibility",
+      "affectedUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "resourceKey": "PAGE opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:29:54.390Z",
+      "updatedAt": "2026-10-20T14:31:03.550Z",
+      "severity": "medium",
+      "severityRationale": "Keyboard-only and assistive-tech users cannot reach the account-recovery path; a mouse workaround is required.",
+      "priority": "P2",
+      "priorityRationale": "Blocks a core public flow for a user group; simple fix (use <a>/<button>).",
+      "status": "Confirmed",
+      "preconditions": [],
+      "steps": [
+        "Open https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+        "Press Tab repeatedly from the top of the page",
+        "Observe focus order: Username/Password -> Login -> 4 social icon links -> OrangeHRM, Inc -> body; 'Forgot your password?' never receives focus",
+        "Note the text is also not exposed as a link/button (absent from the page's link and button lists), yet a mouse click navigates to /auth/requestPasswordResetCode"
+      ],
+      "expected": "The recovery control is a focusable link or button reachable by Tab and activatable by Enter.",
+      "expectedSource": "convention: WCAG 2.1 SC 2.1.1 Keyboard and 4.1.2 Name, Role, Value",
+      "actual": "Element is clickable by mouse only (EV-004 shows mouse navigation works) but is absent from tab order and from links/buttons (EV-001, EV-003).",
+      "errorSignature": "forgot-password-not-focusable",
+      "evidenceIds": [
+        "EV-001",
+        "EV-003",
+        "EV-004",
+        "EV-032",
+        "EV-033"
+      ],
+      "impact": "Keyboard/screen-reader users cannot start password recovery.",
+      "scope": "Login page; Chromium 1280x800",
+      "suggestedFollowUp": "Confirm with a screen reader (NVDA/VoiceOver) and in Firefox/WebKit.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S14"
+      ],
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:55.822Z",
+          "method": "browser",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-032",
+            "EV-033"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-001",
+          "kind": "page_inspection",
+          "label": "inspect /web/index.php/auth/login",
+          "file": "evidence/EV-001-inspect-web-index-php-auth-login.json",
+          "sha256": "f274b6bbc151a99aa0016692ba97b301c03b3736a586c64e0a51149897486ddc",
+          "createdAt": "2026-10-20T14:27:14.812Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "OrangeHRM | 8 a11y issues | overflow=false"
+        },
+        {
+          "id": "EV-003",
+          "kind": "page_inspection",
+          "label": "inspect /web/index.php/auth/login",
+          "file": "evidence/EV-003-inspect-web-index-php-auth-login.json",
+          "sha256": "b6a088586da2c8cab1557a5fa2d2f792480a7a6d711d0d1c6ba8cf4788f8d628",
+          "createdAt": "2026-10-20T14:27:24.708Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "OrangeHRM | 8 a11y issues | overflow=false"
+        },
+        {
+          "id": "EV-004",
+          "kind": "screenshot",
+          "label": "Open Forgot password via mouse",
+          "file": "evidence/EV-004-open-forgot-password-via-mouse.png",
+          "sha256": "036776f8a56cf58ca7bc29d5361ebb38019050d3ab1129df0328afcaa623fab3",
+          "createdAt": "2026-10-20T14:27:32.046Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode",
+          "summary": "Screenshot after 2 action(s)"
+        },
+        {
+          "id": "EV-032",
+          "kind": "verification",
+          "label": "verify QA-001 attempt 1",
+          "file": "evidence/EV-032-verify-qa-001-attempt-1.png",
+          "sha256": "6fdf559cfbe5e12c560487d3dc38f233821027e626ac5358d843257c8a2cf9e9",
+          "createdAt": "2026-10-20T14:30:59.703Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 1: reproduced {\"textPresent:Forgot your password?\":true,\"selectorCount=0\":true}"
+        },
+        {
+          "id": "EV-033",
+          "kind": "verification",
+          "label": "verify QA-001 attempt 2",
+          "file": "evidence/EV-033-verify-qa-001-attempt-2.png",
+          "sha256": "6fdf559cfbe5e12c560487d3dc38f233821027e626ac5358d843257c8a2cf9e9",
+          "createdAt": "2026-10-20T14:31:03.539Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 2: reproduced {\"textPresent:Forgot your password?\":true,\"selectorCount=0\":true}"
+        }
+      ]
+    },
+    {
+      "id": "QA-002",
+      "title": "Login page shows raw translation keys and throws uncaught AxiosError when i18n messages API fails",
+      "category": "resilience",
+      "affectedUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "affectedEndpoint": "GET /web/index.php/core/i18n/messages",
+      "resourceKey": "GET /web/index.php/core/i18n/messages",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:30:00.822Z",
+      "updatedAt": "2026-10-20T14:30:44.950Z",
+      "severity": "medium",
+      "severityRationale": "Entire login UI becomes unreadable keys (auth.login, general.username) with no user-facing error or retry; affects all users if the i18n endpoint degrades.",
+      "priority": "P3",
+      "priorityRationale": "Requires backend failure to trigger, but impact on that occasion is total for the entry page.",
+      "status": "Confirmed",
+      "preconditions": [
+        "GET /web/index.php/core/i18n/messages returns HTTP 500 (simulated in investigator browser only)"
+      ],
+      "steps": [
+        "Simulate 500 for /core/i18n/messages in the browser session",
+        "Open /web/index.php/auth/login",
+        "Observe page text and console"
+      ],
+      "expected": "Fallback to default (English) strings or a clear error with retry; no unhandled exception.",
+      "expectedSource": "convention: graceful degradation of non-critical dependency / error handling for failed XHR",
+      "actual": "Visible text: 'auth.login ... general.username general.password auth.login auth.forgot_password?'. Console: pageerror 'AxiosError: fe' (uncaught).",
+      "errorSignature": "AxiosError: fe / raw i18n keys",
+      "evidenceIds": [
+        "EV-020",
+        "EV-022",
+        "EV-023"
+      ],
+      "impact": "Users see a broken, unlabeled login screen during i18n outages.",
+      "scope": "Login page (likely all Vue pages that load i18n)",
+      "suggestedFollowUp": "Check other failure modes (timeout/abort) and reset-password page.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S17"
+      ],
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:32.960Z",
+          "method": "browser",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-022",
+            "EV-023"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-020",
+          "kind": "screenshot",
+          "label": "Login page with i18n API returning 500",
+          "file": "evidence/EV-020-login-page-with-i18n-api-returning-500.png",
+          "sha256": "a89ba7f2b490154d4f9d3b932a36382e09622206c0a10e4c560ce714fa499b70",
+          "createdAt": "2026-10-20T14:28:46.628Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Screenshot after 3 action(s)"
+        },
+        {
+          "id": "EV-022",
+          "kind": "verification",
+          "label": "verify QA-002 attempt 1",
+          "file": "evidence/EV-022-verify-qa-002-attempt-1.png",
+          "sha256": "a89ba7f2b490154d4f9d3b932a36382e09622206c0a10e4c560ce714fa499b70",
+          "createdAt": "2026-10-20T14:30:39.179Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 1: reproduced {\"textPresent:auth.login\":true,\"textPresent:general.username\":true,\"consoleError\":true}"
+        },
+        {
+          "id": "EV-023",
+          "kind": "verification",
+          "label": "verify QA-002 attempt 2",
+          "file": "evidence/EV-023-verify-qa-002-attempt-2.png",
+          "sha256": "a89ba7f2b490154d4f9d3b932a36382e09622206c0a10e4c560ce714fa499b70",
+          "createdAt": "2026-10-20T14:30:44.942Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 2: reproduced {\"textPresent:auth.login\":true,\"textPresent:general.username\":true,\"consoleError\":true}"
+        }
+      ]
+    },
+    {
+      "id": "QA-006",
+      "title": "Login/reset forms lack accessible names, page lang and named icon links; validation errors not exposed programmatically",
+      "category": "accessibility",
+      "affectedUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "resourceKey": "PAGE opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:30:29.125Z",
+      "updatedAt": "2026-10-20T14:30:55.790Z",
+      "severity": "medium",
+      "severityRationale": "Screen readers announce unnamed fields/links; 'Required' errors are visual only.",
+      "priority": "P3",
+      "priorityRationale": "Broad but individually small fixes; no functional block for sighted users.",
+      "status": "Confirmed",
+      "preconditions": [],
+      "steps": [
+        "Open /auth/login and inspect",
+        "Username/password inputs rely on placeholder only",
+        "<html> has no lang; no <h1>; 4 social icon links have no accessible name",
+        "Click Login with empty fields: 'Required' shown but no field reports invalid state"
+      ],
+      "expected": "Inputs programmatically labelled, html lang set, icon links have aria-label, invalid fields set aria-invalid/aria-describedby.",
+      "expectedSource": "convention: WCAG 2.1 SC 1.3.1, 2.4.4, 3.1.1, 3.3.1, 4.1.2",
+      "actual": "As described; same pattern on reset page (EV-005).",
+      "errorSignature": "form-field-no-accessible-name html-lang-missing",
+      "evidenceIds": [
+        "EV-002",
+        "EV-005",
+        "EV-017",
+        "EV-019",
+        "EV-030",
+        "EV-031"
+      ],
+      "impact": "Assistive-technology users get poor or missing announcements on the entry pages.",
+      "scope": "Login and Reset Password pages",
+      "suggestedFollowUp": "Full axe + screen-reader audit; check contrast and button focus indicators.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S15"
+      ],
+      "possibleDuplicateOf": {
+        "id": "QA-001",
+        "score": 0.57
+      },
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:48.265Z",
+          "method": "browser",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-030",
+            "EV-031"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-002",
+          "kind": "screenshot",
+          "label": "Submit empty login form",
+          "file": "evidence/EV-002-submit-empty-login-form.png",
+          "sha256": "eb2b52aaa0d6b4412bfcaf9de576b3b6bcb79c0c3a3bd791cae205fc9ff36275",
+          "createdAt": "2026-10-20T14:27:22.055Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Screenshot after 2 action(s)"
+        },
+        {
+          "id": "EV-005",
+          "kind": "page_inspection",
+          "label": "inspect /web/index.php/auth/requestPasswordResetCode",
+          "file": "evidence/EV-005-inspect-web-index-php-auth-requestpasswo.json",
+          "sha256": "6c5abb67df015b9fecbd96ab795b15e8bb9c95296b50c308fbf810ebd1271a07",
+          "createdAt": "2026-10-20T14:27:33.865Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode",
+          "summary": "OrangeHRM | 3 a11y issues | overflow=false"
+        },
+        {
+          "id": "EV-017",
+          "kind": "screenshot",
+          "label": "Username only + rapid clicks",
+          "file": "evidence/EV-017-username-only-rapid-clicks.png",
+          "sha256": "a5fcb1d28789377b29d6d1d2e9d32d78670c7e7811f53e2444105f9e4d7dadb7",
+          "createdAt": "2026-10-20T14:28:25.399Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Screenshot after 4 action(s)"
+        },
+        {
+          "id": "EV-019",
+          "kind": "page_inspection",
+          "label": "inspect /web/index.php/auth/login",
+          "file": "evidence/EV-019-inspect-web-index-php-auth-login.json",
+          "sha256": "14f7e4f123bbb345ac0890651c612754433255a2e75c1085b80e0003657faf1d",
+          "createdAt": "2026-10-20T14:28:36.304Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "OrangeHRM | 8 a11y issues | overflow=false"
+        },
+        {
+          "id": "EV-030",
+          "kind": "verification",
+          "label": "verify QA-006 attempt 1",
+          "file": "evidence/EV-030-verify-qa-006-attempt-1.png",
+          "sha256": "6fdf559cfbe5e12c560487d3dc38f233821027e626ac5358d843257c8a2cf9e9",
+          "createdAt": "2026-10-20T14:30:51.671Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 1: reproduced {\"selectorPresent\":true,\"selectorCount=1\":true}"
+        },
+        {
+          "id": "EV-031",
+          "kind": "verification",
+          "label": "verify QA-006 attempt 2",
+          "file": "evidence/EV-031-verify-qa-006-attempt-2.png",
+          "sha256": "6fdf559cfbe5e12c560487d3dc38f233821027e626ac5358d843257c8a2cf9e9",
+          "createdAt": "2026-10-20T14:30:55.772Z",
+          "source": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "Verification attempt 2: reproduced {\"selectorPresent\":true,\"selectorCount=1\":true}"
+        }
+      ]
+    },
+    {
+      "id": "QA-003",
+      "title": "HTML pages lack clickjacking protection (no X-Frame-Options, no CSP frame-ancestors); CSP allows unsafe-inline/unsafe-eval",
+      "category": "security",
+      "affectedUrl": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "resourceKey": "PAGE opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:30:12.630Z",
+      "updatedAt": "2026-10-20T14:30:45.998Z",
+      "severity": "low",
+      "severityRationale": "Header-level indicator only; exploitability (e.g., framing the login page) not demonstrated and framing an unauthenticated login page has limited impact.",
+      "priority": "P3",
+      "priorityRationale": "Defence-in-depth hardening; cheap to add.",
+      "status": "Confirmed",
+      "securityConfidence": "verified",
+      "preconditions": [],
+      "steps": [
+        "GET /web/index.php/auth/login",
+        "Inspect response headers"
+      ],
+      "expected": "X-Frame-Options: DENY/SAMEORIGIN or CSP frame-ancestors 'self'; CSP without unsafe-eval.",
+      "expectedSource": "convention: OWASP Secure Headers Project / OWASP Clickjacking Defense Cheat Sheet",
+      "actual": "No X-Frame-Options; CSP 'default-src blob: 'self' ... 'unsafe-inline' 'unsafe-eval'' with no frame-ancestors. Also no Referrer-Policy.",
+      "errorSignature": "missing X-Frame-Options frame-ancestors",
+      "evidenceIds": [
+        "EV-009",
+        "EV-010",
+        "EV-024",
+        "EV-025"
+      ],
+      "impact": "Pages could be framed by third-party sites (clickjacking); CSP gives weak XSS mitigation.",
+      "scope": "HTML responses on opensource-demo host",
+      "suggestedFollowUp": "Safe framing PoC on a local page to confirm browser renders the frame; review authenticated pages.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S9"
+      ],
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:44.978Z",
+          "method": "api",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-024",
+            "EV-025"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-009",
+          "kind": "api_exchange",
+          "label": "login page headers",
+          "file": "evidence/EV-009-login-page-headers.json",
+          "sha256": "a0de8ce0cdde7fbd5b9d003e2c5ab57099ff91f20657f6007c0eb91854707fc8",
+          "createdAt": "2026-10-20T14:27:53.267Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "GET /web/index.php/auth/login -> 200"
+        },
+        {
+          "id": "EV-010",
+          "kind": "api_exchange",
+          "label": "dashboard unauthenticated",
+          "file": "evidence/EV-010-dashboard-unauthenticated.json",
+          "sha256": "4777a40bd250311027baacfd8c4db663311c553974295861ba342f8616bcecff",
+          "createdAt": "2026-10-20T14:27:53.580Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index",
+          "summary": "GET /web/index.php/dashboard/index -> 302"
+        },
+        {
+          "id": "EV-024",
+          "kind": "api_exchange",
+          "label": "verify QA-003 attempt 1",
+          "file": "evidence/EV-024-verify-qa-003-attempt-1.json",
+          "sha256": "6f6976590e995d1ad0ed805b98879dafe88f2faa290de94c28a47b7b1cc072cf",
+          "createdAt": "2026-10-20T14:30:45.676Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "GET /web/index.php/auth/login -> 200"
+        },
+        {
+          "id": "EV-025",
+          "kind": "api_exchange",
+          "label": "verify QA-003 attempt 2",
+          "file": "evidence/EV-025-verify-qa-003-attempt-2.json",
+          "sha256": "f84b9617768257ccf87386b2488375ae6a541d6d223ee30e0baa42efa3820776",
+          "createdAt": "2026-10-20T14:30:45.994Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "GET /web/index.php/auth/login -> 200"
+        }
+      ]
+    },
+    {
+      "id": "QA-004",
+      "title": "Server header discloses nginx/1.18.0 (Ubuntu) and HSTS is missing on REST API / error responses",
+      "category": "security",
+      "affectedEndpoint": "GET /web/index.php/api/v2/pim/employees",
+      "resourceKey": "GET /web/index.php/api/v2/pim/employees",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:30:17.126Z",
+      "updatedAt": "2026-10-20T14:30:47.423Z",
+      "severity": "low",
+      "severityRationale": "Information disclosure and inconsistent transport hardening; no direct exploit shown.",
+      "priority": "P4",
+      "priorityRationale": "Hardening item.",
+      "status": "Confirmed",
+      "securityConfidence": "verified",
+      "preconditions": [],
+      "steps": [
+        "GET /web/index.php/api/v2/pim/employees without session",
+        "GET /web/index.php/api/v2/does-not-exist",
+        "Compare headers with /auth/login"
+      ],
+      "expected": "Server version suppressed; Strict-Transport-Security on all HTTPS responses.",
+      "expectedSource": "convention: OWASP Secure Headers Project / RFC 6797",
+      "actual": "Server: nginx/1.18.0 (Ubuntu) on all responses; Strict-Transport-Security present on HTML routes but absent on /api/v2/* and 404 responses.",
+      "errorSignature": "nginx/1.18.0 (Ubuntu)",
+      "evidenceIds": [
+        "EV-011",
+        "EV-014",
+        "EV-009",
+        "EV-026",
+        "EV-027"
+      ],
+      "impact": "Eases fingerprinting; inconsistent HSTS coverage.",
+      "scope": "All responses (version); API and 404 responses (HSTS)",
+      "suggestedFollowUp": "Set server_tokens off; add HSTS at nginx level for every location.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S9"
+      ],
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:46.020Z",
+          "method": "api",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-026",
+            "EV-027"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-011",
+          "kind": "api_exchange",
+          "label": "PIM employees API unauthenticated",
+          "file": "evidence/EV-011-pim-employees-api-unauthenticated.json",
+          "sha256": "a17b5d251f1f8a7fefa0272d25a12066a8878f4204dbad6c9c5d5df3c7d68d70",
+          "createdAt": "2026-10-20T14:27:53.910Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+          "summary": "GET /web/index.php/api/v2/pim/employees -> 401"
+        },
+        {
+          "id": "EV-014",
+          "kind": "api_exchange",
+          "label": "Unknown API route",
+          "file": "evidence/EV-014-unknown-api-route.json",
+          "sha256": "1cfef95741996215c94cb75b6ce27622b68fec65a4240a1f3ae03f12968b6382",
+          "createdAt": "2026-10-20T14:27:54.858Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/does-not-exist",
+          "summary": "GET /web/index.php/api/v2/does-not-exist -> 404"
+        },
+        {
+          "id": "EV-009",
+          "kind": "api_exchange",
+          "label": "login page headers",
+          "file": "evidence/EV-009-login-page-headers.json",
+          "sha256": "a0de8ce0cdde7fbd5b9d003e2c5ab57099ff91f20657f6007c0eb91854707fc8",
+          "createdAt": "2026-10-20T14:27:53.267Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+          "summary": "GET /web/index.php/auth/login -> 200"
+        },
+        {
+          "id": "EV-026",
+          "kind": "api_exchange",
+          "label": "verify QA-004 attempt 1",
+          "file": "evidence/EV-026-verify-qa-004-attempt-1.json",
+          "sha256": "c9be5f979e33ccffb266a57eafb69e161db5ef196f755a0564720f55a9627e76",
+          "createdAt": "2026-10-20T14:30:46.477Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+          "summary": "GET /web/index.php/api/v2/pim/employees -> 401"
+        },
+        {
+          "id": "EV-027",
+          "kind": "api_exchange",
+          "label": "verify QA-004 attempt 2",
+          "file": "evidence/EV-027-verify-qa-004-attempt-2.json",
+          "sha256": "05911a7f4e2fe492fdbee3141e901268ee57c50d295c83817a6c057c81b9deec",
+          "createdAt": "2026-10-20T14:30:47.421Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+          "summary": "GET /web/index.php/api/v2/pim/employees -> 401"
+        }
+      ]
+    },
+    {
+      "id": "QA-005",
+      "title": "REST API returns misleading 'Session expired' to never-authenticated clients; unknown API routes return empty HTML 404",
+      "category": "api",
+      "affectedEndpoint": "GET /web/index.php/api/v2/pim/employees",
+      "resourceKey": "GET /web/index.php/api/v2/pim/employees",
+      "environment": "staging",
+      "createdAt": "2026-10-20T14:30:21.993Z",
+      "updatedAt": "2026-10-20T14:30:48.250Z",
+      "severity": "low",
+      "severityRationale": "Contract/consistency issue affecting API consumers' error handling; access control itself works (401).",
+      "priority": "P4",
+      "priorityRationale": "Cosmetic for UI, minor for integrators.",
+      "status": "Confirmed",
+      "preconditions": [],
+      "steps": [
+        "Without any cookie, GET /web/index.php/api/v2/pim/employees",
+        "GET /web/index.php/api/v2/does-not-exist"
+      ],
+      "expected": "401 with a message such as 'Unauthorized'/'Authentication required'; unknown API routes return a JSON error body consistent with other API errors.",
+      "expectedSource": "convention: consistent REST error contract (RFC 9457 problem details style)",
+      "actual": "401 {\"error\":{\"status\":401,\"message\":\"Session expired\"}} for a fresh client; 404 text/html with empty body for unknown /api/v2 path.",
+      "errorSignature": "Session expired",
+      "evidenceIds": [
+        "EV-011",
+        "EV-012",
+        "EV-013",
+        "EV-014",
+        "EV-028",
+        "EV-029"
+      ],
+      "impact": "Clients cannot distinguish expiry from missing auth; inconsistent content types complicate error handling.",
+      "scope": "/web/index.php/api/v2/*",
+      "suggestedFollowUp": "Check with authenticated session whether the message differs for real expiry.",
+      "requirementIds": [],
+      "scenarioIds": [
+        "S7",
+        "S8"
+      ],
+      "possibleDuplicateOf": {
+        "id": "QA-004",
+        "score": 0.61
+      },
+      "verifications": [
+        {
+          "at": "2026-10-20T14:30:47.437Z",
+          "method": "api",
+          "attempts": 2,
+          "reproduced": 2,
+          "errors": [],
+          "resultingStatus": "Confirmed",
+          "evidenceIds": [
+            "EV-028",
+            "EV-029"
+          ],
+          "notes": "Reproduced 2/2."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-011",
+          "kind": "api_exchange",
+          "label": "PIM employees API unauthenticated",
+          "file": "evidence/EV-011-pim-employees-api-unauthenticated.json",
+          "sha256": "a17b5d251f1f8a7fefa0272d25a12066a8878f4204dbad6c9c5d5df3c7d68d70",
+          "createdAt": "2026-10-20T14:27:53.910Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+          "summary": "GET /web/index.php/api/v2/pim/employees -> 401"
+        },
+        {
+          "id": "EV-012",
+          "kind": "api_exchange",
+          "label": "Admin users API unauthenticated",
+          "file": "evidence/EV-012-admin-users-api-unauthenticated.json",
+          "sha256": "4c24750af9969722f7193ba19b8f1a8082df8cf4446cf5b23cc5a74daa038a95",
+          "createdAt": "2026-10-20T14:27:54.216Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users",
+          "summary": "GET /web/index.php/api/v2/admin/users -> 401"
+        },
+        {
+          "id": "EV-013",
+          "kind": "api_exchange",
+          "label": "Dashboard API unauthenticated",
+          "file": "evidence/EV-013-dashboard-api-unauthenticated.json",
+          "sha256": "d06f5eb8c5452050b34beddb71b54d6b542da300aaad6693661ab3b22fbf9524",
+          "createdAt": "2026-10-20T14:27:54.549Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary",
+          "summary": "GET /web/index.php/api/v2/dashboard/employees/action-summary -> 401"
+        },
+        {
+          "id": "EV-014",
+          "kind": "api_exchange",
+          "label": "Unknown API route",
+          "file": "evidence/EV-014-unknown-api-route.json",
+          "sha256": "1cfef95741996215c94cb75b6ce27622b68fec65a4240a1f3ae03f12968b6382",
+          "createdAt": "2026-10-20T14:27:54.858Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/does-not-exist",
+          "summary": "GET /web/index.php/api/v2/does-not-exist -> 404"
+        },
+        {
+          "id": "EV-028",
+          "kind": "api_exchange",
+          "label": "verify QA-005 attempt 1",
+          "file": "evidence/EV-028-verify-qa-005-attempt-1.json",
+          "sha256": "c8e1e4beb293e079e4b75dcdad65f6766e0fb60084c68172288f7cbb8c8dba62",
+          "createdAt": "2026-10-20T14:30:47.895Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users",
+          "summary": "GET /web/index.php/api/v2/admin/users -> 401"
+        },
+        {
+          "id": "EV-029",
+          "kind": "api_exchange",
+          "label": "verify QA-005 attempt 2",
+          "file": "evidence/EV-029-verify-qa-005-attempt-2.json",
+          "sha256": "893af712f1ff53a85ba07a7c79325c569b0875c568855dd31d1582e753f2d401",
+          "createdAt": "2026-10-20T14:30:48.248Z",
+          "source": "GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/users",
+          "summary": "GET /web/index.php/api/v2/admin/users -> 401"
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "metrics": {
+      "scenarioExecution": {
+        "numerator": 18,
+        "denominator": 18,
+        "percent": 100,
+        "definition": "Scenarios with a recorded result (passed/failed/partial/blocked) ÷ scenarios planned in this mission."
+      },
+      "scenarioCompletion": {
+        "numerator": 14,
+        "denominator": 18,
+        "percent": 77.8,
+        "definition": "Scenarios with a conclusive pass/fail ÷ scenarios planned (blocked and partial excluded)."
+      },
+      "requirementsCoverage": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Recorded requirements with ≥1 attempted scenario ÷ requirements recorded from stated sources."
+      },
+      "requirementsPlanned": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Recorded requirements with ≥1 planned scenario ÷ requirements recorded."
+      },
+      "requirementsWithFailures": {
+        "numerator": 0,
+        "denominator": 0,
+        "percent": null,
+        "definition": "Requirements with ≥1 failed scenario ÷ requirements recorded."
+      },
+      "endpointCoverage": {
+        "numerator": 4,
+        "denominator": 10,
+        "percent": 40,
+        "definition": "Registered endpoints (from docs/network/supplied) that received ≥1 investigator request ÷ endpoints registered. Says nothing about depth."
+      }
+    },
+    "byCategory": [
+      {
+        "category": "functional",
+        "areas": 2,
+        "planned": 8,
+        "attempted": 8,
+        "passed": "[REDACTED len=1]",
+        "failed": 0,
+        "partial": 0,
+        "blocked": 3,
+        "notTested": 0,
+        "defects": 0,
+        "evidenceRefs": 5,
+        "gapReasons": [
+          "S3: Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets.",
+          "S4: Requires POST submission to /auth/validate, not permitted in read-only scope.",
+          "S13: Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+        ],
+        "applicable": true
+      },
+      {
+        "category": "ui",
+        "areas": 1,
+        "planned": 3,
+        "attempted": 3,
+        "passed": "[REDACTED len=1]",
+        "failed": 2,
+        "partial": 0,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 2,
+        "evidenceRefs": 5,
+        "gapReasons": [],
+        "applicable": true
+      },
+      {
+        "category": "api",
+        "areas": 1,
+        "planned": 5,
+        "attempted": 5,
+        "passed": "[REDACTED len=1]",
+        "failed": 2,
+        "partial": 1,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 3,
+        "evidenceRefs": 10,
+        "gapReasons": [],
+        "applicable": true
+      },
+      {
+        "category": "security",
+        "areas": 0,
+        "planned": 0,
+        "attempted": 0,
+        "passed": "[REDACTED len=1]",
+        "failed": 0,
+        "partial": 0,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 2,
+        "evidenceRefs": 0,
+        "gapReasons": [],
+        "applicable": false
+      },
+      {
+        "category": "integration",
+        "areas": 1,
+        "planned": 2,
+        "attempted": 2,
+        "passed": "[REDACTED len=1]",
+        "failed": 1,
+        "partial": 0,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 1,
+        "evidenceRefs": 3,
+        "gapReasons": [],
+        "applicable": true
+      },
+      {
+        "category": "compatibility",
+        "areas": 0,
+        "planned": 0,
+        "attempted": 0,
+        "passed": "[REDACTED len=1]",
+        "failed": 0,
+        "partial": 0,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 0,
+        "evidenceRefs": 0,
+        "gapReasons": [],
+        "applicable": false
+      },
+      {
+        "category": "business-rules",
+        "areas": 0,
+        "planned": 0,
+        "attempted": 0,
+        "passed": "[REDACTED len=1]",
+        "failed": 0,
+        "partial": 0,
+        "blocked": 0,
+        "notTested": 0,
+        "defects": 0,
+        "evidenceRefs": 0,
+        "gapReasons": [],
+        "applicable": false
+      }
+    ],
+    "areas": [
+      {
+        "id": "A1",
+        "category": "functional",
+        "name": "Login form & authentication flow",
+        "description": "",
+        "risk": {
+          "impact": 5,
+          "likelihood": 3,
+          "exposure": 5,
+          "score": 75
+        },
+        "rationale": "Single entry point to the app; all users depend on it",
+        "scenarios": 5,
+        "results": {
+          "passed": "[REDACTED len=1]",
+          "blocked": 2
+        }
+      },
+      {
+        "id": "A4",
+        "category": "ui",
+        "name": "Login/reset UI, keyboard & accessibility",
+        "description": "",
+        "risk": {
+          "impact": 3,
+          "likelihood": 4,
+          "exposure": 5,
+          "score": 60
+        },
+        "rationale": "Every user sees these screens",
+        "scenarios": 3,
+        "results": {
+          "failed": 2,
+          "passed": "[REDACTED len=1]"
+        }
+      },
+      {
+        "id": "A2",
+        "category": "api",
+        "name": "Unauthenticated access control (routes & REST API)",
+        "description": "",
+        "risk": {
+          "impact": 5,
+          "likelihood": 2,
+          "exposure": 5,
+          "score": 50
+        },
+        "rationale": "Public internet exposure of HR data APIs",
+        "scenarios": 5,
+        "results": {
+          "passed": "[REDACTED len=1]",
+          "partial": 1,
+          "failed": 2
+        }
+      },
+      {
+        "id": "A3",
+        "category": "functional",
+        "name": "Password reset flow",
+        "description": "",
+        "risk": {
+          "impact": 4,
+          "likelihood": 3,
+          "exposure": 4,
+          "score": 48
+        },
+        "rationale": "Account recovery path, public",
+        "scenarios": 3,
+        "results": {
+          "passed": "[REDACTED len=1]",
+          "blocked": 1
+        }
+      },
+      {
+        "id": "A5",
+        "category": "integration",
+        "name": "Frontend–backend integration (i18n, redirects, resilience)",
+        "description": "",
+        "risk": {
+          "impact": 3,
+          "likelihood": 3,
+          "exposure": 4,
+          "score": 36
+        },
+        "rationale": "UI depends on i18n API for all labels",
+        "scenarios": 2,
+        "results": {
+          "failed": 1,
+          "passed": "[REDACTED len=1]"
+        }
+      }
+    ],
+    "gaps": {
+      "notTested": [],
+      "blocked": [
+        {
+          "id": "S3",
+          "title": "Valid login reaches dashboard",
+          "reason": "Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets."
+        },
+        {
+          "id": "S4",
+          "title": "Invalid credentials show error message (server submission)",
+          "reason": "Requires POST submission to /auth/validate, not permitted in read-only scope."
+        },
+        {
+          "id": "S13",
+          "title": "Submit reset request for a username",
+          "reason": "Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+        }
+      ],
+      "partial": [
+        {
+          "id": "S7",
+          "title": "REST API v2 endpoints return 401 JSON without session",
+          "observation": "401 body says 'Session expired' for a client with no session."
+        }
+      ],
+      "requirementsWithoutScenarios": [],
+      "untestedEndpoints": [
+        "GET /web/index.php/core/i18n/messages",
+        "POST /web/index.php/auth/validate",
+        "POST /web/index.php/auth/requestResetPassword",
+        "GET /web/index.php/dashboard/index",
+        "GET /web/index.php/auth/logout",
+        "GET /web/index.php/api/v2/dashboard/employees/action-summary"
+      ],
+      "unevidencedResults": []
+    },
+    "recommendations": [
+      "[risk 75] S3 Valid login reaches dashboard — blocked (Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets.)",
+      "[risk 75] S4 Invalid credentials show error message (server submission) — blocked (Requires POST submission to /auth/validate, not permitted in read-only scope.)",
+      "[risk 50] S7 REST API v2 endpoints return 401 JSON without session — partial",
+      "[risk 48] S13 Submit reset request for a username — blocked (Reset request is a POST that may trigger emails/state change; not permitted in read-only scope.)",
+      "Endpoint GET /web/index.php/core/i18n/messages (network) never exercised",
+      "Endpoint POST /web/index.php/auth/validate (observed (login form action)) never exercised",
+      "Endpoint POST /web/index.php/auth/requestResetPassword (observed (reset form action)) never exercised",
+      "Endpoint GET /web/index.php/dashboard/index (observed (redirect target probe)) never exercised",
+      "Endpoint GET /web/index.php/auth/logout (probe) never exercised"
+    ],
+    "disclaimer": "Coverage is measured only against the scenarios, requirements and endpoints recorded in this mission. It is not a claim of exhaustive testing."
+  },
+  "requirements": [],
+  "endpoints": [
+    {
+      "key": "GET /web/index.php/core/i18n/messages",
+      "method": "GET",
+      "path": "/web/index.php/core/i18n/messages",
+      "source": "network",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/login",
+      "method": "GET",
+      "path": "/web/index.php/auth/login",
+      "source": "observed (login page route)",
+      "requestCount": 2,
+      "statusesSeen": [
+        200
+      ],
+      "lastTestedAt": "2026-10-20T14:30:45.988Z"
+    },
+    {
+      "key": "POST /web/index.php/auth/validate",
+      "method": "POST",
+      "path": "/web/index.php/auth/validate",
+      "source": "observed (login form action)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/requestPasswordResetCode",
+      "method": "GET",
+      "path": "/web/index.php/auth/requestPasswordResetCode",
+      "source": "observed (navigation)",
+      "requestCount": 2,
+      "statusesSeen": [
+        200
+      ],
+      "lastTestedAt": "2026-10-20T14:30:45.988Z"
+    },
+    {
+      "key": "POST /web/index.php/auth/requestResetPassword",
+      "method": "POST",
+      "path": "/web/index.php/auth/requestResetPassword",
+      "source": "observed (reset form action)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/dashboard/index",
+      "method": "GET",
+      "path": "/web/index.php/dashboard/index",
+      "source": "observed (redirect target probe)",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/auth/logout",
+      "method": "GET",
+      "path": "/web/index.php/auth/logout",
+      "source": "probe",
+      "requestCount": 0,
+      "statusesSeen": []
+    },
+    {
+      "key": "GET /web/index.php/api/v2/pim/employees",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/pim/employees",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 2,
+      "statusesSeen": [
+        401
+      ],
+      "lastTestedAt": "2026-10-20T14:30:47.418Z"
+    },
+    {
+      "key": "GET /web/index.php/api/v2/admin/users",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/admin/users",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 2,
+      "statusesSeen": [
+        401
+      ],
+      "lastTestedAt": "2026-10-20T14:30:48.244Z"
+    },
+    {
+      "key": "GET /web/index.php/api/v2/dashboard/employees/action-summary",
+      "method": "GET",
+      "path": "/web/index.php/api/v2/dashboard/employees/action-summary",
+      "source": "probe (OrangeHRM 5 REST API path convention)",
+      "requestCount": 0,
+      "statusesSeen": []
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S1",
+      "areaId": "A1",
+      "title": "Empty username+password shows Required for both fields without network call",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-002"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Both fields show 'Required'; no network request sent."
+    },
+    {
+      "id": "S2",
+      "areaId": "A1",
+      "title": "Only username filled shows Required on password only",
+      "technique": "boundary",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-017"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Only password shows Required."
+    },
+    {
+      "id": "S3",
+      "areaId": "A1",
+      "title": "Valid login reaches dashboard",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets."
+    },
+    {
+      "id": "S4",
+      "areaId": "A1",
+      "title": "Invalid credentials show error message (server submission)",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Requires POST submission to /auth/validate, not permitted in read-only scope."
+    },
+    {
+      "id": "S5",
+      "areaId": "A1",
+      "title": "Rapid double-click on Login with empty fields does not fire requests",
+      "technique": "exception",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-017"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "3 rapid clicks with invalid form: no submission requests. Rapid-click on a valid form not tested (would POST)."
+    },
+    {
+      "id": "S6",
+      "areaId": "A2",
+      "title": "Protected page /dashboard/index redirects unauthenticated user to login",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-010"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "302 to /auth/login."
+    },
+    {
+      "id": "S7",
+      "areaId": "A2",
+      "title": "REST API v2 endpoints return 401 JSON without session",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "partial",
+      "evidenceIds": [
+        "EV-011",
+        "EV-012",
+        "EV-013"
+      ],
+      "findingIds": [
+        "QA-005"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "401 body says 'Session expired' for a client with no session."
+    },
+    {
+      "id": "S8",
+      "areaId": "A2",
+      "title": "Error responses for unknown API routes are consistent JSON and leak nothing",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-014"
+      ],
+      "findingIds": [
+        "QA-005"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Empty text/html 404 for unknown API path; no stack trace leaked."
+    },
+    {
+      "id": "S9",
+      "areaId": "A2",
+      "title": "Security headers on HTML and API responses (clickjacking, HSTS, version disclosure, cookie flags)",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-009",
+        "EV-011",
+        "EV-024",
+        "EV-026"
+      ],
+      "findingIds": [
+        "QA-003",
+        "QA-004"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "No X-Frame-Options/frame-ancestors; server version disclosed; HSTS missing on API. Session cookie is Secure; HttpOnly; SameSite=Lax (good)."
+    },
+    {
+      "id": "S10",
+      "areaId": "A2",
+      "title": "CORS: foreign Origin not reflected",
+      "technique": "security",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-008",
+        "EV-015"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "No Access-Control-Allow-Origin for foreign Origin; OPTIONS 405."
+    },
+    {
+      "id": "S11",
+      "areaId": "A3",
+      "title": "Forgot password link navigates to reset page; Cancel returns to login",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-004",
+        "EV-006"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Mouse navigation works; keyboard reachability fails (see S14)."
+    },
+    {
+      "id": "S12",
+      "areaId": "A3",
+      "title": "Reset with empty username shows Required",
+      "technique": "negative",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-018"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z"
+    },
+    {
+      "id": "S13",
+      "areaId": "A3",
+      "title": "Submit reset request for a username",
+      "technique": "positive",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "blocked",
+      "evidenceIds": [],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "blockedReason": "Reset request is a POST that may trigger emails/state change; not permitted in read-only scope."
+    },
+    {
+      "id": "S14",
+      "areaId": "A4",
+      "title": "Keyboard-only user can reach every interactive control incl. Forgot password",
+      "technique": "accessibility",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-001",
+        "EV-032"
+      ],
+      "findingIds": [
+        "QA-001"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "'Forgot your password?' absent from tab order and not an <a>/<button>. A keyboard Enter-activation attempt crashed the investigator connection; result based on focus-order capture and DOM verification."
+    },
+    {
+      "id": "S15",
+      "areaId": "A4",
+      "title": "Fields have accessible names; page has lang, h1; social icon links named",
+      "technique": "accessibility",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-001",
+        "EV-005",
+        "EV-030"
+      ],
+      "findingIds": [
+        "QA-006"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Inputs placeholder-only, html lang missing, no h1, icon links unnamed, Required errors not exposed via aria-invalid."
+    },
+    {
+      "id": "S16",
+      "areaId": "A4",
+      "title": "Login page responsive at mobile width 375px (no overflow)",
+      "technique": "usability",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-019"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "375px: no horizontal overflow or overlap."
+    },
+    {
+      "id": "S17",
+      "areaId": "A5",
+      "title": "Login page behaviour when i18n messages API fails (500)",
+      "technique": "recovery",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "failed",
+      "evidenceIds": [
+        "EV-020",
+        "EV-022"
+      ],
+      "findingIds": [
+        "QA-002"
+      ],
+      "updatedAt": "2026-10-20T14:31:26.042Z",
+      "observation": "Raw i18n keys rendered and uncaught 'AxiosError: fe' when i18n API returns 500."
+    },
+    {
+      "id": "S18",
+      "areaId": "A5",
+      "title": "Browser back/forward between login and reset keeps consistent state",
+      "technique": "integration",
+      "requirementIds": [],
+      "endpointKeys": [],
+      "status": "passed",
+      "evidenceIds": [
+        "EV-021"
+      ],
+      "findingIds": [],
+      "updatedAt": "2026-10-20T14:31:26.042Z"
+    }
+  ],
+  "limitations": [
+    "Browsers not installed for this Playwright version: firefox, webkit. Cross-browser checks on them are blocked.",
+    "Mission is read-only (GET/HEAD/OPTIONS); create/update/delete behaviour was not exercised through the API tool.",
+    "No requirements were recorded; expectations rely on stated conventions, so requirements coverage cannot be computed.",
+    "Security checks were limited to safe, non-destructive observations within the authorised scope. The absence of findings in an area is not evidence that it is secure.",
+    "No direct database or service-layer access was available unless stated; data-integrity conclusions are based on UI/API observations only.",
+    "Request budget used: 16/400; browser actions: 69/1500.",
+    "Read-only scope: login (POST /auth/validate) and reset-password submission (POST) were not exercised, so authentication, invalid-credential messaging, lockout/rate limiting and all post-login modules are untested.",
+    "No credentials were supplied as secrets; authenticated API authorization (IDOR, role checks) was not tested.",
+    "Chromium only; Firefox and WebKit were unavailable.",
+    "No requirements or API documentation were found on in-scope pages; expectations are based on cited conventions (WCAG, OWASP, RFC) rather than product requirements.",
+    "API endpoints beyond the observed i18n call were probed by OrangeHRM 5 path convention, not from a published spec, so the endpoint denominator is incomplete.",
+    "A keyboard Enter-activation check crashed the investigator connection; the mission was resumed and keyboard reachability was concluded from focus-order capture and DOM verification instead.",
+    "Accessibility checks are heuristic; no screen-reader or colour-contrast audit was performed.",
+    "The demo is shared and publicly reset, so behaviour may differ from production deployments."
+  ],
+  "nextInvestigations": [
+    "With an approved test environment that allows POST, test login with valid and invalid credentials, lockout/rate limiting, session fixation and logout invalidation.",
+    "Use authenticated sessions per role (Admin/ESS) to test REST API v2 authorization, pagination and input validation.",
+    "Run the i18n fault injection with timeout and abort modes, and on the reset and dashboard pages.",
+    "Do a full screen-reader and axe audit, including focus indicators on buttons (the heuristic flagged them) and colour contrast.",
+    "Run a cross-browser pass in Firefox and WebKit.",
+    "Build a safe local framing proof of concept to judge clickjacking impact on authenticated pages.",
+    "[risk 75] S3 Valid login reaches dashboard — blocked (Login submits POST /auth/validate; mission is read-only (allowStateChanging=false) and no credentials were provided as secrets.)",
+    "[risk 75] S4 Invalid credentials show error message (server submission) — blocked (Requires POST submission to /auth/validate, not permitted in read-only scope.)",
+    "[risk 50] S7 REST API v2 endpoints return 401 JSON without session — partial",
+    "[risk 48] S13 Submit reset request for a username — blocked (Reset request is a POST that may trigger emails/state change; not permitted in read-only scope.)",
+    "Endpoint GET /web/index.php/core/i18n/messages (network) never exercised",
+    "Endpoint POST /web/index.php/auth/validate (observed (login form action)) never exercised",
+    "Endpoint POST /web/index.php/auth/requestResetPassword (observed (reset form action)) never exercised",
+    "Endpoint GET /web/index.php/dashboard/index (observed (redirect target probe)) never exercised",
+    "Endpoint GET /web/index.php/auth/logout (probe) never exercised"
+  ]
+}

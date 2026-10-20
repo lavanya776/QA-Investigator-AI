@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "statusText": "OK",
+    "durationMs": 687,
+    "headers": {
+      "cache-control": "no-cache, private",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-security-policy": "default-src blob: 'self' mailto:* *.projects-abroad.net native.testing.equest.com www.youtube.com www.google.com demo.docusign.net sandbox.e-signlive.com player.vimeo.com fonts.googleapis.com fonts.gstatic.com 'unsafe-inline' 'unsafe-eval';img-src * 'self' data: blob;font-src 'self' fonts.gstatic.com sandbox.e-signlive.com data:",
+      "content-type": "text/html; charset=UTF-8",
+      "date": "Tue, 20 Oct 2026 14:30:44 GMT",
+      "public-key-pins": "pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\";pin-sha256=\"WXDfGFFCnQIIh0nuqVGw4nFn+aeW/FrzWeec5j/+FKI=\";pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\"; max-age=63072000; includeSubDomains",
+      "server": "nginx/1.18.0 (Ubuntu)",
+      "set-cookie": "orangehrm=[REDACTED]; path=/web; secure; HttpOnly; SameSite=Lax",
+      "strict-transport-security": "max-age=63072000; includeSubdomains; ",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block"
+    },
+    "sizeBytes": 3449,
+    "truncated": false,
+    "body": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>OrangeHRM</title>\n      <link rel=\"icon\" href=\"/web/dist/favicon.ico?v=1783336755185\">\n    <link href=\"/web/dist/css/chunk-vendors.css?v=1783336755185\" rel=\"preload\" as=\"style\">\n    <link href=\"/web/dist/css/app.css?v=1783336755185\" rel=\"preload\" as=\"style\">\n    <link href=\"/web/dist/js/chunk-vendors.js?v=1783336755185\" rel=\"preload\" as=\"script\">\n    <link href=\"/web/dist/js/app.js?v=1783336755185\" rel=\"preload\" as=\"script\">\n      <link href=\"/web/dist/css/chunk-vendors.css?v=1783336755185\" rel=\"stylesheet\"/>\n    <link href=\"/web/dist/css/app.css?v=1783336755185\" rel=\"stylesheet\"/>\n</head>\n<body>\n  <style>\n    :root {\n            --oxd-primary-one-color:#FF7B1D;\n            --oxd-primary-font-color:#FFFFFF;\n            --oxd-secondary-four-color:#76BC21;\n            --oxd-secondary-font-color:#FFFFFF;\n            --oxd-primary-gradient-start-color:#FF920B;\n            --oxd-primary-gradient-end-color:#F35C17;\n            --oxd-secondary-gradient-start-color:#FF920B;\n            --oxd-secondary-gradient-end-color:#F35C17;\n            --oxd-primary-one-lighten-5-color:#ff8a37;\n            --oxd-primary-one-lighten-30-color:#ffd4b6;\n            --oxd-primary-one-darken-5-color:#ff6c03;\n            --oxd-primary-one-alpha-10-color:rgba(255, 123, 29, 0.1);\n            --oxd-primary-one-alpha-15-color:rgba(255, 123, 29, 0.15);\n            --oxd-primary-one-alpha-20-color:rgba(255, 123, 29, 0.2);\n            --oxd-primary-one-alpha-50-color:rgba(255, 123, 29, 0.5);\n            --oxd-secondary-four-lighten-5-color:#84d225;\n            --oxd-secondary-four-darken-5-color:#68a61d;\n            --oxd-secondary-four-alpha-10-color:rgba(118, 188, 33, 0.1);\n            --oxd-secondary-four-alpha-15-color:rgba(118, 188, 33, 0.15);\n            --oxd-secondary-four-alpha-20-color:rgba(118, 188, 33, 0.2);\n            --oxd-secondary-four-alpha-50-color:rgba(118, 188, 33, 0.5);\n        }\n  </style>\n    <noscript>\n        <strong>\n            We're sorry but orangehrm doesn't work properly without JavaScript enabled. Please enable it to continue.\n        </strong>\n    </noscript>\n\n    <div id=\"app\">\n    <auth-login\n            :token=\"&quot;0f02178c.R2Gg9blCSJmtA2Aoz51pVtfU-fjPKdBlLzv0w1m48dI.ExXMhdcQD8zoagRjjcIIYeSYuoilEacyenG3hS-Li5pyDs276A06zupJOQ&quot;\"\n            :login-logo-src=\"&quot;\\/web\\/images\\/ohrm_logo.png&quot;\"\n            :login-banner-src=\"&quot;\\/web\\/images\\/ohrm_branding.png?v=1783336755185&quot;\"\n            :show-social-media=\"true\"\n            :is-demo-mode=\"true\"\n            :authenticators=\"[]\"\n        >\n    <template v-slot:footer>\n        <div class=\"orangehrm-copyright-wrapper\">\n            <oxd-text tag=\"p\" class=\"orangehrm-copyright\">OrangeHRM OS 5.9</oxd-text>\n<oxd-text tag=\"p\" class=\"orangehrm-copyright\">&copy; 2005 - 2026 <a href=\"http://www.orangehrm.com\" target=\"_blank\">OrangeHRM, Inc</a>. All rights reserved.</oxd-text>\n        </div>\n    </template>\n    </auth-login>\n    </div>\n    <script type=\"text/javascript\">\n        window.appGlobal = {\n          baseUrl: \"/web/index.php\",\n          publicPath: \"/web\",\n        };\n    </script>\n    <script src=\"/web/dist/js/chunk-vendors.js?v=1783336755185\"></script>\n    <script src=\"/web/dist/js/app.js?v=1783336755185\"></script>\n</body>\n</html>\n"
+  },
+  "verification": {
+    "findingId": "QA-003",
+    "checks": {
+      "status": true,
+      "headerMissing:x-frame-options": true,
+      "headerValueExcludes:content-security-policy~frame-ancestors": true
+    },
+    "reproduced": true
+  }
+}

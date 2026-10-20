@@ -1,0 +1,38 @@
+{
+  "name": "qa-investigator-ai",
+  "version": "0.1.0",
+  "description": "Evidence-driven QA investigation MCP server for Claude Code: generic browser + controlled API investigation, findings with verification, coverage matrix and HTML/JSON/Markdown reports.",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "qa-investigator-mcp": "dist/server.js"
+  },
+  "scripts": {
+    "start": "npm run build && node ui/server.mjs",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "mcp:http": "node dist/server.js --http 3920",
+    "smoke": "node scripts/smoke-test.mjs",
+    "call": "node scripts/mcp-call.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "qa",
+    "exploratory-testing",
+    "claude-code",
+    "playwright",
+    "api-testing"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "playwright": "^1.64.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "session": "mobile",
+  "browser": "chromium",
+  "navigationStatus": 200,
+  "title": "OrangeHRM",
+  "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+  "metaViewport": "width=device-width,initial-scale=1",
+  "headings": [
+    {
+      "level": 5,
+      "text": "Login"
+    }
+  ],
+  "landmarks": 0,
+  "links": [
+    {
+      "text": "",
+      "href": "https://www.linkedin.com/company/orangehrm/mycompany/",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(1)",
+      "visible": true,
+      "target": "_blank"
+    },
+    {
+      "text": "",
+      "href": "https://www.facebook.com/OrangeHRM/",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(2)",
+      "visible": true,
+      "target": "_blank"
+    },
+    {
+      "text": "",
+      "href": "https://twitter.com/orangehrm?lang=en",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(3)",
+      "visible": true,
+      "target": "_blank"
+    },
+    {
+      "text": "",
+      "href": "https://www.youtube.com/c/OrangeHRMInc",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(4)",
+      "visible": true,
+      "target": "_blank"
+    },
+    {
+      "text": "OrangeHRM, Inc",
+      "href": "http://www.orangehrm.com/",
+      "selector": "div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "visible": true,
+      "target": "_blank"
+    }
+  ],
+  "buttons": [
+    {
+      "name": "Login",
+      "type": "submit",
+      "disabled": false,
+      "visible": true,
+      "selector": "div > div:nth-of-type(2) > div:nth-of-type(2) > form > div:nth-of-type(3) > button"
+    }
+  ],
+  "forms": [
+    {
+      "selector": "div > div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(2) > form",
+      "action": "/web/index.php/auth/validate",
+      "method": "post",
+      "novalidate": true,
+      "hasCsrfLikeField": true,
+      "fields": [
+        {
+          "tag": "input",
+          "type": "input",
+          "name": "username",
+          "placeholder": "Username",
+          "required": false,
+          "value": "",
+          "invalid": false,
+          "visible": true,
+          "selector": "input[name=\"username\"]"
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password",
+          "placeholder": "Password",
+          "required": false,
+          "value": "",
+          "invalid": false,
+          "visible": true,
+          "selector": "input[name=\"password\"]"
+        }
+      ]
+    }
+  ],
+  "looseFields": [],
+  "messages": [],
+  "loadingIndicators": [],
+  "accessibilityIssues": [
+    {
+      "rule": "html-lang-missing",
+      "selector": "document",
+      "detail": "<html> has no lang attribute"
+    },
+    {
+      "rule": "form-field-no-accessible-name",
+      "selector": "input[name=\"username\"]",
+      "detail": "placeholder=\"Username\" name=\"username\""
+    },
+    {
+      "rule": "form-field-no-accessible-name",
+      "selector": "input[name=\"password\"]",
+      "detail": "placeholder=\"Password\" name=\"password\""
+    },
+    {
+      "rule": "control-no-accessible-name",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(1)",
+      "detail": "<a data-v-0af708be=\"\" href=\"https://www.linkedin.com/company/orangehrm/mycompany/\" target=\"_blank\"><svg data-v-bddebfba="
+    },
+    {
+      "rule": "control-no-accessible-name",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(2)",
+      "detail": "<a data-v-0af708be=\"\" href=\"https://www.facebook.com/OrangeHRM/\" target=\"_blank\"><svg data-v-bddebfba=\"\" data-v-0af708be"
+    },
+    {
+      "rule": "control-no-accessible-name",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(3)",
+      "detail": "<a data-v-0af708be=\"\" href=\"https://twitter.com/orangehrm?lang=en\" target=\"_blank\"><svg data-v-bddebfba=\"\" data-v-0af708"
+    },
+    {
+      "rule": "control-no-accessible-name",
+      "selector": "div:nth-of-type(1) > div > div:nth-of-type(2) > div:nth-of-type(3) > div:nth-of-type(1) > a:nth-of-type(4)",
+      "detail": "<a data-v-0af708be=\"\" href=\"https://www.youtube.com/c/OrangeHRMInc\" target=\"_blank\"><svg data-v-bddebfba=\"\" data-v-0af70"
+    },
+    {
+      "rule": "no-h1",
+      "selector": "document",
+      "detail": "Page has no visible <h1>"
+    }
+  ],
+  "layout": {
+    "viewport": {
+      "width": 375,
+      "height": 740
+    },
+    "documentWidth": 375,
+    "horizontalOverflow": false,
+    "overflowingElements": [],
+    "overlappingInteractive": []
+  },
+  "visibleText": "Login Username : Admin Password : admin123 Username Password Login Forgot your password? OrangeHRM OS 5.9 © 2005 - 2026 OrangeHRM, Inc. All rights reserved.",
+  "counts": {
+    "links": 5,
+    "buttons": 1,
+    "forms": 1,
+    "images": 3
+  },
+  "events": {
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "failedRequests": [],
+    "apiCalls": [
+      {
+        "method": "GET",
+        "url": "https://opensource-demo.orangehrmlive.com/web/index.php/core/i18n/messages",
+        "status": 200,
+        "durationMs": 350
+      }
+    ],
+    "blockedNavigations": [],
+    "dialogs": []
+  }
+}

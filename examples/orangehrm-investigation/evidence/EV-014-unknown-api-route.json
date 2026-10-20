@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/does-not-exist",
+    "headers": {}
+  },
+  "response": {
+    "status": 404,
+    "statusText": "Not Found",
+    "durationMs": 297,
+    "headers": {
+      "cache-control": "no-cache, private",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-type": "text/html; charset=UTF-8",
+      "date": "Tue, 20 Oct 2026 14:27:53 GMT",
+      "server": "nginx/1.18.0 (Ubuntu)",
+      "set-cookie": "orangehrm=[REDACTED]; path=/web; secure; HttpOnly; SameSite=Lax",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block"
+    },
+    "sizeBytes": 0,
+    "truncated": false,
+    "body": ""
+  },
+  "observations": [
+    {
+      "type": "security-header-missing",
+      "detail": "Content-Security-Policy is absent on an HTML response",
+      "confidence": "indicator"
+    },
+    {
+      "type": "security-header-missing",
+      "detail": "No X-Frame-Options or CSP frame-ancestors (clickjacking protection) on HTML response",
+      "confidence": "indicator"
+    },
+    {
+      "type": "security-header-missing",
+      "detail": "Referrer-Policy is absent",
+      "confidence": "indicator"
+    },
+    {
+      "type": "security-header-missing",
+      "detail": "Strict-Transport-Security absent on HTTPS response",
+      "confidence": "indicator"
+    },
+    {
+      "type": "technology-disclosure",
+      "detail": "Server header discloses version: nginx/1.18.0 (Ubuntu)",
+      "confidence": "indicator"
+    }
+  ],
+  "expectation": {
+    "evaluated": false,
+    "passed": true,
+    "failures": []
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "session": "default",
+  "browser": "chromium",
+  "title": "OrangeHRM",
+  "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/requestPasswordResetCode",
+  "metaViewport": "width=device-width,initial-scale=1",
+  "headings": [
+    {
+      "level": 6,
+      "text": "Reset Password"
+    }
+  ],
+  "landmarks": 0,
+  "links": [
+    {
+      "text": "OrangeHRM, Inc",
+      "href": "http://www.orangehrm.com/",
+      "selector": "#app > div:nth-of-type(1) > div:nth-of-type(2) > p:nth-of-type(2) > a",
+      "visible": true,
+      "target": "_blank"
+    }
+  ],
+  "buttons": [
+    {
+      "name": "Cancel",
+      "type": "button",
+      "disabled": false,
+      "visible": true,
+      "selector": "div:nth-of-type(1) > div:nth-of-type(1) > div > form > div:nth-of-type(2) > button:nth-of-type(1)"
+    },
+    {
+      "name": "Reset Password",
+      "type": "submit",
+      "disabled": false,
+      "visible": true,
+      "selector": "div:nth-of-type(1) > div:nth-of-type(1) > div > form > div:nth-of-type(2) > button:nth-of-type(2)"
+    }
+  ],
+  "forms": [
+    {
+      "selector": "#app > div:nth-of-type(1) > div:nth-of-type(1) > div > form",
+      "action": "/web/index.php/auth/requestResetPassword",
+      "method": "post",
+      "novalidate": true,
+      "hasCsrfLikeField": true,
+      "fields": [
+        {
+          "tag": "input",
+          "type": "input",
+          "name": "username",
+          "placeholder": "Username",
+          "required": false,
+          "value": "",
+          "invalid": false,
+          "visible": true,
+          "selector": "input[name=\"username\"]"
+        }
+      ]
+    }
+  ],
+  "looseFields": [],
+  "messages": [],
+  "loadingIndicators": [],
+  "accessibilityIssues": [
+    {
+      "rule": "html-lang-missing",
+      "selector": "document",
+      "detail": "<html> has no lang attribute"
+    },
+    {
+      "rule": "form-field-no-accessible-name",
+      "selector": "input[name=\"username\"]",
+      "detail": "placeholder=\"Username\" name=\"username\""
+    },
+    {
+      "rule": "no-h1",
+      "selector": "document",
+      "detail": "Page has no visible <h1>"
+    }
+  ],
+  "layout": {
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "documentWidth": 1280,
+    "horizontalOverflow": false,
+    "overflowingElements": [],
+    "overlappingInteractive": []
+  },
+  "visibleText": "Reset Password Please enter your username to identify your account to reset your password Username Cancel Reset Password OrangeHRM OS 5.9 © 2005 - 2026 OrangeHRM, Inc. All rights reserved.",
+  "counts": {
+    "links": 1,
+    "buttons": 2,
+    "forms": 1,
+    "images": 0
+  },
+  "focusOrder": [
+    {
+      "step": 1,
+      "tag": "input",
+      "name": "",
+      "focusIndicator": true
+    },
+    {
+      "step": 2,
+      "tag": "button",
+      "name": "Cancel",
+      "focusIndicator": false
+    },
+    {
+      "step": 3,
+      "tag": "button",
+      "name": "Reset Password",
+      "focusIndicator": false
+    },
+    {
+      "step": 4,
+      "tag": "a",
+      "name": "OrangeHRM, Inc",
+      "focusIndicator": true
+    },
+    {
+      "step": 5,
+      "tag": "body",
+      "name": "",
+      "focusIndicator": false
+    },
+    {
+      "step": 6,
+      "tag": "input",
+      "name": "",
+      "focusIndicator": true
+    }
+  ],
+  "events": {
+    "consoleErrors": [],
+    "consoleWarnings": 0,
+    "failedRequests": [],
+    "apiCalls": [],
+    "blockedNavigations": [],
+    "dialogs": []
+  }
+}

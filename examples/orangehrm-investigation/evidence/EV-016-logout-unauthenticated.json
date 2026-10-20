@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/logout",
+    "headers": {}
+  },
+  "response": {
+    "status": 302,
+    "statusText": "Found",
+    "durationMs": 311,
+    "headers": {
+      "cache-control": "no-cache, private",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src blob: 'self' mailto:* *.projects-abroad.net native.testing.equest.com www.youtube.com www.google.com demo.docusign.net sandbox.e-signlive.com player.vimeo.com fonts.googleapis.com fonts.gstatic.com 'unsafe-inline' 'unsafe-eval';img-src * 'self' data: blob;font-src 'self' fonts.gstatic.com sandbox.e-signlive.com data:",
+      "content-type": "text/html; charset=utf-8",
+      "date": "Tue, 20 Oct 2026 14:27:54 GMT",
+      "location": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+      "public-key-pins": "pin-sha256=\"yQhO6YqQX5Y/NxyHAjXnI3jOtYWUm/TtRr666RunXRg=\";pin-sha256=\"WXDfGFFCnQIIh0nuqVGw4nFn+aeW/FrzWeec5j/+FKI=\";pin-sha256=\"Md7QJIL/UMqdHaS73pEkLHm5ofUUE35+r4SYdM014/E=\"; max-age=63072000; includeSubDomains",
+      "server": "nginx/1.18.0 (Ubuntu)",
+      "set-cookie": "orangehrm=[REDACTED]; path=/web; secure; HttpOnly; SameSite=Lax",
+      "strict-transport-security": "max-age=63072000; includeSubdomains; ",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block"
+    },
+    "sizeBytes": 510,
+    "truncated": false,
+    "body": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'\" />\n\n        <title>Redirecting to https://opensource-demo.orangehrmlive.com/web/index.php/auth/login</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\">https://opensource-demo.orangehrmlive.com/web/index.php/auth/login</a>.\n    </body>\n</html>"
+  },
+  "observations": [
+    {
+      "type": "security-header-missing",
+      "detail": "No X-Frame-Options or CSP frame-ancestors (clickjacking protection) on HTML response",
+      "confidence": "indicator"
+    },
+    {
+      "type": "security-header-missing",
+      "detail": "Referrer-Policy is absent",
+      "confidence": "indicator"
+    },
+    {
+      "type": "technology-disclosure",
+      "detail": "Server header discloses version: nginx/1.18.0 (Ubuntu)",
+      "confidence": "indicator"
+    }
+  ],
+  "expectation": {
+    "evaluated": false,
+    "passed": true,
+    "failures": []
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/pim/employees",
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "statusText": "Unauthorized",
+    "durationMs": 450,
+    "headers": {
+      "cache-control": "no-cache, private",
+      "connection": "keep-alive",
+      "content-type": "application/json",
+      "date": "Tue, 20 Oct 2026 14:30:44 GMT",
+      "server": "nginx/1.18.0 (Ubuntu)",
+      "set-cookie": "orangehrm=[REDACTED]; path=/web; secure; HttpOnly; SameSite=Lax",
+      "transfer-encoding": "chunked",
+      "x-content-type-options": "nosniff",
+      "x-xss-protection": "1; mode=block"
+    },
+    "sizeBytes": 52,
+    "truncated": false,
+    "body": {
+      "error": {
+        "status": 401,
+        "message": "Session expired"
+      }
+    }
+  },
+  "verification": {
+    "findingId": "QA-004",
+    "checks": {
+      "headerMissing:strict-transport-security": true,
+      "headerValueIncludes:server~nginx/1.18.0": true
+    },
+    "reproduced": true
+  }
+}
